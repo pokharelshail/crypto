@@ -1,0 +1,36 @@
+#birdeye
+
+'''
+STRATEGY
+
+1.Pull all data from birdeye and get volume, tvl, 24h trade, 24h volume, marketcap (500k)
+2. analyze that data to decide which is best to buy
+    --use llms
+    --use gpt vision
+3. buy 5 top memes
+'''
+
+import requests
+import dontshare as d
+
+
+def get_headers():
+    headers = {"X-API-KEY": d.api}
+    return headers
+
+
+def get_solana_24H():
+    url = "https://public-api.birdeye.so/defi/tokenlist?sort_by=v24hUSD&sort_type=desc"
+    headers = get_headers()
+    response = requests.get(url, headers=headers)
+    return response.text
+
+
+url = "https://public-api.birdeye.so/defi/networks"
+response = requests.get(url,headers=get_headers())
+print(response.text)
+print(get_solana_24H())
+
+
+
+
