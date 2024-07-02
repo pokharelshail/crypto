@@ -12,6 +12,7 @@ STRATEGY
 
 import requests
 import dontshare as d
+import json
 
 HEADERS = {"X-API-KEY": d.api}
 
@@ -20,11 +21,9 @@ def get_solana_24H():
     response = requests.get(url, headers=HEADERS)
     return response.text
 
-
-url = "https://public-api.birdeye.so/defi/networks"
-response = requests.get(url,headers=HEADERS)
-print(response.text)
-print(get_solana_24H())
+response = json.loads(get_solana_24H())
+json_formatted_str = json.dumps(response, indent=2)
+print(json_formatted_str)
 
 
 
