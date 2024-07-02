@@ -13,21 +13,16 @@ STRATEGY
 import requests
 import dontshare as d
 
-
-def get_headers():
-    headers = {"X-API-KEY": d.api}
-    return headers
-
+HEADERS = {"X-API-KEY": d.api}
 
 def get_solana_24H():
     url = "https://public-api.birdeye.so/defi/tokenlist?sort_by=v24hUSD&sort_type=desc"
-    headers = get_headers()
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=HEADERS)
     return response.text
 
 
 url = "https://public-api.birdeye.so/defi/networks"
-response = requests.get(url,headers=get_headers())
+response = requests.get(url,headers=HEADERS)
 print(response.text)
 print(get_solana_24H())
 
